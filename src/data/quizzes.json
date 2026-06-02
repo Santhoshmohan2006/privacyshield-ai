@@ -1,0 +1,344 @@
+[
+  {
+    "id": "1",
+    "title": "Data Privacy Basics",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "q": "What is Personally Identifiable Information (PII)?",
+        "options": [
+          "Any data collected by a website",
+          "Information that can be used to identify an individual",
+          "Encrypted passwords only",
+          "Publicly available corporate data"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Which of these is considered a best practice for password security?",
+        "options": [
+          "Using the same password for all accounts",
+          "Writing passwords on sticky notes",
+          "Using a password manager and enabling 2FA",
+          "Using your birthdate as a password"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What does Phishing mean in cybersecurity?",
+        "options": [
+          "A technique to catch fish using technology",
+          "A fraudulent attempt to obtain sensitive information by disguising as a trustworthy entity",
+          "Scanning a network for vulnerabilities",
+          "Encrypting data to prevent access"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What is a cookie in web browsers?",
+        "options": [
+          "A small piece of data stored on the user's computer to remember state and session info",
+          "A virus that steals credentials",
+          "A script that runs background cryptocurrency mining",
+          "A protocol for secure database connections"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Why is oversharing on social media a major privacy risk?",
+        "options": [
+          "It increases browser page load times",
+          "It violates social platform terms of service",
+          "It provides attackers with personal details for social engineering or security question answers",
+          "It automatically deletes previous posts"
+        ],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "GDPR & Compliance",
+    "difficulty": "Intermediate",
+    "questions": [
+      {
+        "q": "What does GDPR stand for?",
+        "options": [
+          "General Data Protection Regulation",
+          "Global Data Privacy Rules",
+          "General Digital Privacy Requirements",
+          "Global Digital Protection Rights"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "Under GDPR, what is the 'Right to be Forgotten'?",
+        "options": [
+          "The right to forget your passwords",
+          "The right to have your personal data erased by an organization",
+          "The right to opt-out of marketing emails",
+          "The right to browse anonymously"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What is the maximum fine for a severe GDPR violation?",
+        "options": [
+          "Up to €10,000 or 1% global turnover",
+          "Up to €500,000 flat rate",
+          "Up to €20 Million or 4% of global annual turnover, whichever is higher",
+          "GDPR only issues warnings, not financial fines"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "Under GDPR, within how many hours must a data breach be reported to supervisory authorities?",
+        "options": [
+          "24 hours",
+          "72 hours",
+          "7 days",
+          "30 days"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Which principle of GDPR states that data collected should be limited only to what is necessary?",
+        "options": [
+          "Integrity and confidentiality",
+          "Storage limitation",
+          "Data Minimization",
+          "Lawfulness, fairness, and transparency"
+        ],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "AI Privacy & Federated Learning",
+    "difficulty": "Advanced",
+    "questions": [
+      {
+        "q": "What is Federated Learning?",
+        "options": [
+          "Training a model on a centralized server",
+          "Training an algorithm across multiple decentralized edge devices without exchanging raw data samples",
+          "A method to combine different AI models",
+          "Learning using federal government datasets"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "How does Differential Privacy work?",
+        "options": [
+          "By encrypting all database records",
+          "By hiding the IP address of users",
+          "By adding statistical noise to datasets to prevent identification of individuals in query results",
+          "By completely removing all PII from the database"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What is Homomorphic Encryption?",
+        "options": [
+          "A method to encrypt homepage files in a web server",
+          "A form of encryption that allows mathematical operations on ciphertexts, producing encrypted results",
+          "A multi-layered password hashing technique",
+          "An encryption protocol reserved strictly for military communications"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "In machine learning security, what is a 'Model Inversion Attack'?",
+        "options": [
+          "An attack where the adversary reconstructs original training data using model predictions",
+          "Flipping the neural network architecture upside down to crash servers",
+          "Injecting malicious inputs to cause misclassification",
+          "Stealing the weights of a commercial AI model"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What is 'Privacy-Preserving Synthetic Data'?",
+        "options": [
+          "An exact copy of real data with names changed to generic templates",
+          "Artificial data generated from real data that maintains mathematical relationships without exposing real individual records",
+          "Encrypted data arrays that cannot be read without a private key",
+          "Publicly available census datasets"
+        ],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Cybersecurity Threats",
+    "difficulty": "Intermediate",
+    "questions": [
+      {
+        "q": "What is a Ransomware attack?",
+        "options": [
+          "Malware that secretly records browser activity",
+          "Malware that encrypts files and demands financial payment to restore access",
+          "A DDoS attack on domain name servers",
+          "An attack targeting physical routers"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What does 2FA stand for and what is its goal?",
+        "options": [
+          "Two-Factor Authentication; adding an extra layer of security beyond passwords",
+          "Double File Allocation; ensuring file system redundancy",
+          "Two-Fold Access; allowing two simultaneous logins",
+          "Dual Firewall Architecture; running two network security systems"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What is a Man-in-the-Middle (MitM) attack?",
+        "options": [
+          "An attack targeting the middle layer of a database schema",
+          "When an attacker secretly intercepts and alters communication between two parties",
+          "A physical breach of server server-rooms",
+          "An inside developer injecting malicious code"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What is spyware?",
+        "options": [
+          "Software designed to debug complex API integrations",
+          "A browser extension that acts as a proxy",
+          "Malicious software that secretly records user keystrokes and data and sends it to third parties",
+          "An automated script that crawls public search engines"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What is a Zero-Day vulnerability?",
+        "options": [
+          "A security flaw that has been patched for exactly one year",
+          "A flaw discovered on the first day of a month",
+          "A software security flaw that is unknown to the vendor and has no patch available",
+          "An account password that expires within 24 hours"
+        ],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Ethical AI & Bias",
+    "difficulty": "Advanced",
+    "questions": [
+      {
+        "q": "What is algorithmic bias in machine learning?",
+        "options": [
+          "Systematic, repeatable errors in AI outcomes that create unfair treatment of certain groups",
+          "An intentional feature added to speed up neural networks",
+          "A hardware error caused by CPU thermal throttling",
+          "When an AI model achieves 100% test accuracy"
+        ],
+        "answer": 0
+      },
+      {
+        "q": "What is Explainable AI (XAI)?",
+        "options": [
+          "A dictionary defining all technical terms used in AI documents",
+          "A set of methods that allows human users to comprehend and trust AI predictions and decisions",
+          "An AI model that automatically writes code documentation",
+          "A search engine for artificial intelligence papers"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Which of these is a primary cause of bias in AI systems?",
+        "options": [
+          "Using modern GPU clusters",
+          "Training models using too many variables",
+          "Historical biases and structural inequalities reflected in training datasets",
+          "Encrypting user data prior to training"
+        ],
+        "answer": 2
+      },
+      {
+        "q": "What does the 'Right to Explanation' under GDPR mean for users?",
+        "options": [
+          "Users must explain why they want their accounts deleted",
+          "The right to obtain meaningful information about the logic and consequences of automated decision-making",
+          "Developers must explain how they wrote the software code",
+          "Companies must explain their general server architecture to the public"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "In Responsible AI, what does 'Data Lineage' refer to?",
+        "options": [
+          "A diagram of parent-child relationships in a SQL database",
+          "The chronological history of data, showing its origins, transformations, and where it is consumed",
+          "The size of a database backups list",
+          "A legal contract signed between data providers"
+        ],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "Data Breach Response",
+    "difficulty": "Intermediate",
+    "questions": [
+      {
+        "q": "What is the critical first action an organization should take upon discovering a data breach?",
+        "options": [
+          "Immediately issue a press release",
+          "Contain the breach to prevent further exposure and secure network systems",
+          "Delete the affected database tables",
+          "Sue the software vendors"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "In breach response, what does 'Triage' mean?",
+        "options": [
+          "Restoring database tables from older tapes",
+          "Assessing and prioritizing the severity, scope, and potential impact of the breach",
+          "Running three parallel security audits",
+          "Creating three backup system accounts"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "Why is transparent communication with affected users important after a breach?",
+        "options": [
+          "It speeds up website loading times",
+          "It helps users protect their accounts (e.g. change passwords) and maintains organization credibility",
+          "It allows companies to avoid paying fines entirely",
+          "It increases sales of cybersecurity packages"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What is a 'Post-Mortem' in incident response?",
+        "options": [
+          "A backup server running secondary tasks",
+          "An analysis conducted after the breach is resolved to identify root causes and improve security controls",
+          "Deleting credentials of former employees",
+          "A forensic analysis of physical locks"
+        ],
+        "answer": 1
+      },
+      {
+        "q": "What is a 'Credential Stuffing' attack?",
+        "options": [
+          "Filling form fields with arbitrary letters to crash websites",
+          "An automated cyberattack where lists of compromised username/password pairs are tested against other websites",
+          "When an administrator forgets their security keys",
+          "A method of storing cleartext passwords in databases"
+        ],
+        "answer": 1
+      }
+    ]
+  }
+]

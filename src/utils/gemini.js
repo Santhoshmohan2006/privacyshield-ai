@@ -6,7 +6,9 @@ export const isGeminiOffline = () => {
   const envKey = import.meta.env.VITE_GEMINI_API_KEY;
   const localKey = getApiSettings();
   const isValidKey = (key) => key && key.trim() !== '' && key !== 'your_gemini_api_key_here';
-  return !isValidKey(localKey) && !isValidKey(envKey);
+  const offline = !isValidKey(localKey) && !isValidKey(envKey);
+  console.log("isGeminiOffline check:", { envKey, localKey, offline });
+  return offline;
 };
 
 export const getGeminiModel = () => {
@@ -19,7 +21,7 @@ export const getGeminiModel = () => {
   if (!apiKey) throw new Error("Gemini API key is missing. Please set it in Settings.");
   
   const genAI = new GoogleGenerativeAI(apiKey);
-  return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 };
 
 // --- OFFLINE/SIMULATION FALLBACK GENERATORS ---
@@ -197,7 +199,11 @@ export const chatWithGemini = async (prompt, history = []) => {
   
   try {
     const model = getGeminiModel();
-    const formattedHistory = history.map(msg => ({
+    // Filter history so it starts with a 'user' message to comply with Google Gen AI SDK requirements
+    const firstUserIdx = history.findIndex(msg => msg.role === 'user');
+    const validHistory = firstUserIdx !== -1 ? history.slice(firstUserIdx) : [];
+
+    const formattedHistory = validHistory.map(msg => ({
       role: msg.role === 'user' ? 'user' : 'model',
       parts: [{ text: msg.text }],
     }));
@@ -214,7 +220,18 @@ export const chatWithGemini = async (prompt, history = []) => {
     return response.text();
   } catch (error) {
     console.error("Gemini Chat Error, falling back:", error);
-    return getLocalFallbackChatResponse(prompt);
+    return `### ⚠️ Gemini API Connection Error
+    
+Failed to connect to the live Gemini LLM:
+*${error.message}*
+
+**Troubleshooting:**
+1. Check your internet connection.
+2. Verify that your Gemini API Key in **Profile & Settings** is correct and active.
+3. Make sure the API key has access to the model \`gemini-1.5-flash\`.
+
+---
+${getLocalFallbackChatResponse(prompt)}`;
   }
 };
 
@@ -231,7 +248,12 @@ export const analyzeRiskExplanation = async (text, riskScore) => {
     return result.response.text();
   } catch (error) {
     console.error("Gemini Analysis Error:", error);
-    return getLocalRiskExplanation(text, riskScore);
+    return `### ⚠️ Gemini API Connection Error
+    
+Failed to generate AI analysis: *${error.message}*
+
+---
+${getLocalRiskExplanation(text, riskScore)}`;
   }
 };
 
@@ -248,6 +270,11 @@ export const analyzeCompliance = async (policyText) => {
     return result.response.text();
   } catch (error) {
     console.error("Gemini Compliance Error:", error);
-    return getLocalComplianceReport(policyText);
+    return `### ⚠️ Gemini API Connection Error
+    
+Failed to generate AI compliance report: *${error.message}*
+
+---
+${getLocalComplianceReport(policyText)}`;
   }
 };

@@ -14,26 +14,71 @@ const SCENARIOS = [
     description: 'You receive an urgent email from your "CEO" at 8:00 PM requesting an immediate wire transfer and download of a critical spreadsheet attachment.',
     steps: [
       {
-        question: 'What is your immediate response to this urgent request?',
+        question: 'What is your immediate action upon receiving this email?',
         choices: [
           {
-            text: 'Download the attachment instantly to review the spreadsheet, then draft the transfer.',
-            feedback: 'Critical Security Breach! The attachment contained ransomware that has encrypted all local files. Always verify suspicious attachments.',
+            text: 'Download the attachment instantly to review the financial spreadsheet, then draft the transfer.',
+            feedback: 'Critical Security Breach! The attachment contained ransomware that immediately executed, encrypting all local files and servers. Always verify suspicious attachments out-of-band.',
             xpReward: -50,
             success: false,
             badge: null
           },
           {
             text: 'Reply directly to the email asking if this is legitimate and requesting clarification.',
-            feedback: 'High Risk! In a phishing attack, replying just communicates with the attacker who will gladly confirm the fake request. Never reply to spoofed emails.',
+            feedback: 'High Risk! Spoofed emails route replies directly back to the attacker, who will gladly confirm the fake request. Never reply to suspicious senders.',
             xpReward: -20,
             success: false,
             badge: null
           },
           {
-            text: 'Forward the email to the IT Security Team and call the CEO directly via their verified office phone number.',
-            feedback: 'Exceptional Defense! You contained the threat and verified authenticity out-of-band. The email was a spoofed spear-phishing attempt.',
+            text: 'Contact the CEO via a verified secondary channel (office phone/direct call) and forward the email to the IT security team.',
+            feedback: 'Exceptional Defense! You successfully verified the spoofing attempt. The CEO confirmed they did not send the message, stopping the spear-phishing attack in its tracks.',
             xpReward: 80,
+            success: true,
+            badge: null
+          }
+        ]
+      },
+      {
+        question: 'IT Security confirms the email was indeed a phishing attempt. How do you contain the threat?',
+        choices: [
+          {
+            text: 'Ignore the threat now that you have identified it, assuming the attacker will move on.',
+            feedback: 'Security Failure! Other employees who received the same email might download the payload. Containment requires active system sweeps.',
+            xpReward: -30,
+            success: false,
+            badge: null
+          },
+          {
+            text: 'Send an all-hands email warning everyone about this specific sender email address.',
+            feedback: 'Moderate Help. While warnings are helpful, email warnings are slow and manual. Attackers can quickly rotate sender addresses.',
+            xpReward: 30,
+            success: true,
+            badge: null
+          },
+          {
+            text: 'Block the sender domain at the email gateway and run an automated script to quarantine matching messages in other users\' mailboxes.',
+            feedback: 'Outstanding Incident Response! Programmatic blocking and mailbox quarantine prevent the phish from spreading to other employees.',
+            xpReward: 80,
+            success: true,
+            badge: null
+          }
+        ]
+      },
+      {
+        question: 'What long-term security control should you configure to prevent domain spoofing in the future?',
+        choices: [
+          {
+            text: 'Disable external email reception entirely during off-hours.',
+            feedback: 'Impractical! Blocking mail off-hours disrupts normal business operations and does not solve the root security vulnerability.',
+            xpReward: -40,
+            success: false,
+            badge: null
+          },
+          {
+            text: 'Configure SPF, DKIM, and DMARC records on the DNS servers to verify legitimate mail origin.',
+            feedback: 'Outstanding Prevention! Setting up email authentication standards (DMARC, DKIM, and SPF) prevents attackers from spoofing your corporate domain name.',
+            xpReward: 100,
             success: true,
             badge: 'Phishing Defender'
           }
@@ -49,28 +94,66 @@ const SCENARIOS = [
     description: 'A cybersecurity researcher emails you stating that your user database (containing passwords, emails, and full names) is publicly accessible on an open S3 bucket.',
     steps: [
       {
-        question: 'How do you coordinate your response to this incident?',
+        question: 'How do you address the exposed S3 bucket immediately?',
         choices: [
           {
-            text: 'Delete all database logs immediately so that there is no record of the leak, avoiding publicity.',
-            feedback: 'GDPR Violation & Cover-up! Hiding breaches is illegal and results in catastrophic fines. Correct compliance requires full logging and reporting.',
+            text: 'Delete the entire S3 bucket to clear the vulnerability instantly.',
+            feedback: 'Critical Data Loss! Deleting the bucket destroys files needed for business operations and wipes logs crucial for forensic analysis.',
             xpReward: -40,
             success: false,
             badge: null
           },
           {
-            text: 'Isolate the S3 bucket to stop the exposure, triage the leak scale, notify legal counsels, and alert authorities within 72 hours.',
-            feedback: 'Outstanding Compliance! You successfully contained the leak, followed GDPR Article 33 guidelines, and minimized corporate legal exposure.',
+            text: 'Modify the S3 bucket access policy to restrict public access and block all anonymous ingress/egress.',
+            feedback: 'Exceptional containment! Restricting bucket access immediately stops the exposure of user data while preserving evidence for forensic auditors.',
             xpReward: 80,
             success: true,
-            badge: 'Breach Officer'
+            badge: null
           },
           {
-            text: 'Wait for 30 days to see if the vulnerability is reported by other researchers before taking action.',
-            feedback: 'Extreme Exposure! Delaying response allows attackers to download your entire database. Response must be immediate.',
+            text: 'Contact the database host provider and ask them to investigate the leak on their end.',
+            feedback: 'Delay Risk! Contacting external parties first wastes crucial time. You must isolate and secure the resource yourself immediately.',
+            xpReward: -20,
+            success: false,
+            badge: null
+          }
+        ]
+      },
+      {
+        question: 'The bucket permissions are secured. What is your next move to determine if a malicious breach occurred?',
+        choices: [
+          {
+            text: 'Assume no one else accessed the file since the researcher was the one who reported it.',
+            feedback: 'Blind Spot! Public buckets are continuously crawled by automated malicious bots. You must verify accessing IPs.',
             xpReward: -50,
             success: false,
             badge: null
+          },
+          {
+            text: 'Analyze S3 server access logs and AWS CloudTrail events to identify unique IPs that downloaded the database file.',
+            feedback: 'Exceptional Forensics! Log audits reveal whether external malicious actors downloaded the database, mapping the actual breach impact.',
+            xpReward: 80,
+            success: true,
+            badge: null
+          }
+        ]
+      },
+      {
+        question: 'Logs show unauthorized IPs downloaded the user database. What is your legal compliance obligation?',
+        choices: [
+          {
+            text: 'Wait until the next quarterly security review to disclose the leak to prevent negative publicity.',
+            feedback: 'Compliance Failure! Failing to report a confirmed PII breach within 72 hours leads to severe GDPR administrative penalties.',
+            xpReward: -50,
+            success: false,
+            badge: null
+          },
+          {
+            text: 'Notify the regional Data Protection Authority (DPA) within 72 hours and alert affected users under GDPR Article 33 guidelines.',
+            feedback: 'Perfect Compliance! Prompt notification to supervisory authorities and data subjects fulfills GDPR and CCPA transparency laws.',
+            xpReward: 100,
+            success: true,
+            badge: 'Breach Officer'
           }
         ]
       }
@@ -84,26 +167,64 @@ const SCENARIOS = [
     description: 'A European customer sends a formal email demanding that your organization deletes all traces of their personal data from all active systems, files, and server backups.',
     steps: [
       {
-        question: 'What action does your product team take to address this erasure demand?',
+        question: 'What is the first step you must perform before executing the deletion?',
         choices: [
           {
-            text: 'Ignore the request since the user is no longer paying for your services.',
-            feedback: 'Severe Non-Compliance! GDPR applies to all EU citizens regardless of account billing status. Ignoring leads to supervisory fines.',
+            text: 'Delete all records matching that user\'s name instantly.',
+            feedback: 'Security Threat! Senders can spoof email addresses to trigger malicious account deletion. You must authenticate the requester.',
             xpReward: -30,
             success: false,
             badge: null
           },
           {
-            text: 'Deactivate their login credentials but keep their SQL profile records intact for sales forecasting and advertising metrics.',
-            feedback: 'Privacy Violation! Restricting access is not erasure. You must fully purge identifiable records from production systems and backups.',
-            xpReward: -20,
+            text: 'Authenticate the identity of the requester to ensure they own the account.',
+            feedback: 'Correct verification! Validating identity prevents social engineering attacks and unauthorized deletion of data.',
+            xpReward: 80,
+            success: true,
+            badge: null
+          },
+          {
+            text: 'Deny the request immediately as you need their data for marketing statistics.',
+            feedback: 'GDPR Violation! Users have a legally protected right to request data erasure. Refusal leads to immediate fines.',
+            xpReward: -40,
+            success: false,
+            badge: null
+          }
+        ]
+      },
+      {
+        question: 'Identity is verified. How do you execute the data purge across your infrastructure?',
+        choices: [
+          {
+            text: 'Deactivate their login credentials but keep their SQL profile records intact for sales forecasting.',
+            feedback: 'Privacy Violation! Restricting access is not erasure. You must fully delete or irreversibly anonymize their personal identifiers.',
+            xpReward: -30,
             success: false,
             badge: null
           },
           {
-            text: 'Verify the identity of the requester, purge their data from active databases within 30 days, and place a tombstone marker for backups.',
-            feedback: 'Perfect Privacy Engineering! You successfully honored the Right to Erasure (Article 17) while ensuring auditability and security.',
+            text: 'Purge their records from the primary database, check third-party processors (e.g. Stripe, Salesforce), and request downstream deletion.',
+            feedback: 'Excellent Privacy Engineering! Under GDPR Article 17, you must notify downstream third-party processors who handle the data to purge it too.',
             xpReward: 80,
+            success: true,
+            badge: null
+          }
+        ]
+      },
+      {
+        question: 'How do you handle the customer\'s personal data stored on read-only cold backup tapes?',
+        choices: [
+          {
+            text: 'Write a script to overwrite the specific backup block on the read-only tapes.',
+            feedback: 'Technical Failure! Attempting to overwrite read-only tapes is physically impossible and can corrupt archive backups.',
+            xpReward: -40,
+            success: false,
+            badge: null
+          },
+          {
+            text: 'Apply a tombstone/suppression list and delete the encryption key associated with that user\'s data block (crypto-shredding).',
+            feedback: 'State-of-the-Art Privacy Engineering! Crypto-shredding (key deletion) makes the backup block unreadable, satisfying GDPR requirements safely.',
+            xpReward: 100,
             success: true,
             badge: 'Erasure Expert'
           }
@@ -134,12 +255,20 @@ const Scenarios = () => {
     if (!selectedChoice) return;
     setShowOutcome(true);
     
-    // Save completion score/XP in storage
-    saveScenarioCompletion(
-      selectedScenario.id, 
-      selectedChoice.text.substring(0, 30), 
-      selectedChoice.success ? 100 : 0
-    );
+    // Save completion score/XP in storage ONLY on last step completion
+    if (selectedChoice.success && currentStepIndex === selectedScenario.steps.length - 1) {
+      saveScenarioCompletion(
+        selectedScenario.id, 
+        selectedChoice.text.substring(0, 30), 
+        100
+      );
+    }
+  };
+
+  const nextStep = () => {
+    setCurrentStepIndex(prev => prev + 1);
+    setSelectedChoice(null);
+    setShowOutcome(false);
   };
 
   const resetAll = () => {
@@ -221,7 +350,7 @@ const Scenarios = () => {
                   </div>
                   <div>
                     <span className="text-[9px] uppercase font-black tracking-widest text-primary">
-                      Simulation Active
+                      Simulation Active — Step {currentStepIndex + 1} of {selectedScenario.steps.length}
                     </span>
                     <h2 className="text-lg font-bold text-white">{selectedScenario.title}</h2>
                   </div>
@@ -300,7 +429,9 @@ const Scenarios = () => {
                   </div>
 
                   <h3 className={`text-xl font-bold ${selectedChoice.success ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {selectedChoice.success ? 'Success Achieved' : 'Compromised Decision'}
+                    {selectedChoice.success 
+                      ? (currentStepIndex === selectedScenario.steps.length - 1 ? 'Simulation Completed!' : 'Step Completed!') 
+                      : 'Compromised Decision'}
                   </h3>
 
                   <p className="text-slate-300 text-sm max-w-xl mx-auto leading-relaxed mt-3">
@@ -309,7 +440,7 @@ const Scenarios = () => {
 
                   <div className="flex items-center justify-center gap-6 py-4 px-6 bg-slate-900/80 rounded-2xl border border-slate-800 max-w-xs mx-auto mt-6">
                     <div className="text-center">
-                      <span className="text-[10px] text-slate-400 uppercase font-black">XP Gained</span>
+                      <span className="text-[10px] text-slate-400 uppercase font-black">XP Reward</span>
                       <p className={`text-lg font-black mt-0.5 ${selectedChoice.xpReward > 0 ? 'text-primary' : 'text-red-400'}`}>
                         {selectedChoice.xpReward > 0 ? `+${selectedChoice.xpReward}` : selectedChoice.xpReward} XP
                       </p>
@@ -323,16 +454,28 @@ const Scenarios = () => {
                   </div>
 
                   <div className="pt-8 border-t border-slate-800 flex justify-center gap-4">
-                    <Button onClick={resetAll} variant="outline" className="px-6">
-                      Explore Other Simulations
-                    </Button>
-                    {!selectedChoice.success && (
-                      <Button onClick={() => {
-                        setSelectedChoice(null);
-                        setShowOutcome(false);
-                      }} className="px-6">
-                        Try Again
-                      </Button>
+                    {selectedChoice.success ? (
+                      currentStepIndex < selectedScenario.steps.length - 1 ? (
+                        <Button onClick={nextStep} className="px-8 shadow-lg shadow-primary/20">
+                          Proceed to Next Step <FiChevronRight size={14} className="ml-1" />
+                        </Button>
+                      ) : (
+                        <Button onClick={resetAll} className="px-8">
+                          Explore Other Simulations
+                        </Button>
+                      )
+                    ) : (
+                      <>
+                        <Button onClick={resetAll} variant="outline" className="px-6">
+                          Abort Simulation
+                        </Button>
+                        <Button onClick={() => {
+                          setSelectedChoice(null);
+                          setShowOutcome(false);
+                        }} className="px-6">
+                          Try Again
+                        </Button>
+                      </>
                     )}
                   </div>
                 </motion.div>

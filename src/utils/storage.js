@@ -218,6 +218,25 @@ export const markAllNotificationsAsRead = () => {
   window.dispatchEvent(new Event('notifications_updated'));
 };
 
+export const markNotificationAsRead = (id) => {
+  const notifications = getNotifications();
+  const updated = notifications.map(n => n.id === id ? { ...n, read: true } : n);
+  localStorage.setItem('notifications', JSON.stringify(updated));
+  window.dispatchEvent(new Event('notifications_updated'));
+};
+
+export const deleteNotification = (id) => {
+  const notifications = getNotifications();
+  const updated = notifications.filter(n => n.id !== id);
+  localStorage.setItem('notifications', JSON.stringify(updated));
+  window.dispatchEvent(new Event('notifications_updated'));
+};
+
+export const clearAllNotifications = () => {
+  localStorage.setItem('notifications', JSON.stringify([]));
+  window.dispatchEvent(new Event('notifications_updated'));
+};
+
 // --- ACTIVITY LOGS ---
 export const logActivity = (action, details) => {
   const logs = JSON.parse(localStorage.getItem('activities') || '[]');
